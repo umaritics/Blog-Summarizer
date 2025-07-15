@@ -22,5 +22,32 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-bebas);
+}
+html {
+  scroll-behavior: smooth;
+}
+/* globals.css */
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+.sliderContainer{
+  margin-top: 120px;
+  width: 100%;
+}
+.slider{
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+}
+.slider p{
+  margin: 0px;
+  color: white;
+  font-size: 80px;
+  font-weight: 600;
+}
+.slider p:nth-of-type(2) {
+  position: absolute;
+  left: 86.5%;
 }
