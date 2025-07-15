@@ -1,44 +1,49 @@
-import React, { useState } from 'react';
- import jsPDF from 'jspdf';
-
-
+import React, { useState } from "react";
+import jsPDF from "jspdf";
 
 const BlogSummarizer: React.FC = () => {
-  const [url, setUrl] = useState('');
-  const [summary, setSummary] = useState('');
-  const [blogSnippet, setBlogSnippet] = useState('');
+  const [url, setUrl] = useState("");
+  const [summary, setSummary] = useState("");
+  const [blogSnippet, setBlogSnippet] = useState("");
   const [loading, setLoading] = useState(false);
+  const [metadata, setMetadata] = useState({
+    title: "",
+    author: "",
+    siteName: "",
+    publishedDate: "",
+  });
 
   const handleSummarize = async () => {
+    setMetadata({ title: "", author: "", siteName: "", publishedDate: "" });
     setLoading(true);
-    setSummary('');
-    setBlogSnippet('');
+    setSummary("");
+    setBlogSnippet("");
 
-  
     try {
-      const res = await fetch('/api/Summarize', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/Summarize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
       });
 
       const data = await res.json();
       setBlogSnippet(data.snippet);
       setSummary(data.summary);
+      setMetadata(data.metadata || {});
     } catch (error) {
-      console.error('Error summarizing blog:', error);
+      console.error("Error summarizing blog:", error);
     }
 
     setLoading(false);
   };
   const downloadAsPDF = () => {
-  const doc = new jsPDF();
-  doc.setFontSize(16);
-  doc.text("Blog Summary", 10, 10);
-  doc.setFontSize(12);
-  doc.text(summary, 10, 20);
-  doc.save("summary.pdf");
-};
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+    doc.text("Blog Summary", 10, 10);
+    doc.setFontSize(12);
+    doc.text(summary, 10, 20);
+    doc.save("summary.pdf");
+  };
   return (
     <div className="w-full max-w-3xl mx-auto p-4 bg-zinc-900 rounded-xl shadow-md">
       <h2 className="text-2xl  mb-4">Enter a Blog URL</h2>
@@ -56,7 +61,7 @@ const BlogSummarizer: React.FC = () => {
         className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
         disabled={loading || !url}
       >
-        {loading ? 'Summarizing...' : 'Get Summary'}
+        {loading ? "Summarizing..." : "Get Summary"}
       </button>
 
       {blogSnippet && (
@@ -65,37 +70,59 @@ const BlogSummarizer: React.FC = () => {
           <p className="text-gray-300 mt-2">{blogSnippet}</p>
         </div>
       )}
-
+      {metadata.title && (
+        <div className="mt-6 text-gray-400 text-sm">
+          <p>
+            <strong>Title:</strong> {metadata.title}
+          </p>
+          <p>
+            <strong>Author:</strong> {metadata.author}
+          </p>
+          <p>
+            <strong>Publication:</strong> {metadata.siteName}
+          </p>
+          <p>
+            <strong>Date Published:</strong> {metadata.publishedDate}
+          </p>
+        </div>
+      )}
       {summary && (
         <div className="mt-6">
           <h3 className="text-xl ">Summary</h3>
           <p className="text-gray-200 mt-2">{summary}</p>
-          <button
-  onClick={() => navigator.clipboard.writeText(summary)}
-  className="mt-3 px-3 py-2 text-sm bg-white text-black rounded hover:bg-gray-200 transition"
->
-  📋 Copy Summary
-</button>
-<button
-  onClick={downloadAsPDF}
-  className="mt-3 ml-3 px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 transition"
->
-  📄 Download as PDF
-</button>
 
-<button
-  onClick={() => {
-    setUrl('');
-    setSummary('');
-    setBlogSnippet('');
-  }}
-  className="mt-6 px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600"
->
-  
-  🔄 Summarize Another Blog
-</button>
+          <div className="mt-4 flex flex-wrap justify-around gap-3">
+            <button
+              onClick={() => navigator.clipboard.writeText(summary)}
+              className="px-3 py-2 text-sm bg-white text-black rounded hover:bg-gray-200 transition"
+            >
+              📋 Copy Summary
+            </button>
 
+            <button
+              onClick={downloadAsPDF}
+              className="px-3 py-2 text-sm bg-green-500 text-white rounded hover:bg-green-600 transition"
+            >
+              📄 Download as PDF
+            </button>
 
+            <button
+              onClick={() => {
+                setUrl("");
+                setSummary("");
+                setBlogSnippet("");
+                setMetadata({
+                  title: "",
+                  author: "",
+                  siteName: "",
+                  publishedDate: "",
+                });
+              }}
+              className="px-3 py-2 text-sm bg-gray-700 text-white rounded hover:bg-gray-600 transition"
+            >
+              🔄 Summarize Another Blog
+            </button>
+          </div>
         </div>
       )}
     </div>

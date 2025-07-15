@@ -1,9 +1,5 @@
-
-import Hero from '@/components/Hero';
-import Navbar from '@/components/Navbar'
-
-
-
+import Hero from "@/components/Hero";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
@@ -11,12 +7,12 @@ export default function Home() {
       <Navbar />
       <Hero />
 
-      
-     
-
       {/* Placeholder for Summarizer */}
-      <section id="summarizer" className="h-screen flex items-center justify-center mt-150">
-        <h2 className="text-4xl font-semibold">Summarizer Coming Soon...</h2>
+      <section
+        id="summarizer"
+        className="h-screen flex items-center justify-center mt-150"
+      >
+        <h2 className="text-4xl font-semibold">Famous Blogs Coming Soon...</h2>
       </section>
 
       {/* Placeholder for About Us */}
@@ -26,10 +22,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
-
-
-
- 
