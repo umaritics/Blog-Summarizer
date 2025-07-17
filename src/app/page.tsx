@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import ContactUs from "@/components/ContactUs";
+import AboutUs from "@/components/AboutUs";
 
 export default function Home() {
   return (
@@ -17,8 +18,8 @@ export default function Home() {
       </section>
 
       {/* Placeholder for About Us */}
-      <section id="about" className="h-screen flex items-center justify-center">
-        <h2 className="text-4xl font-semibold">About Us Section</h2>
+      <section id="about" className=" flex items-center justify-center">
+        <AboutUs />
       </section>
       <section id="contact">
         <ContactUs />
