@@ -26,36 +26,36 @@ export default function AboutUs() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaLinkedin className="hover:text-green-800 transition duration-200" />
+            <FaLinkedin className="hover:text-gray-400 transition duration-200" />
           </a>
           <a
             href="https://facebook.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaFacebook className="hover:text-green-800 transition duration-200" />
+            <FaFacebook className="hover:text-gray-400 transition duration-200" />
           </a>
           <a
             href="https://twitter.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaTwitter className="hover:text-green-800 transition duration-200" />
+            <FaTwitter className="hover:text-gray-400 transition duration-200" />
           </a>
         </div>
 
         {/* Description */}
         <p className="text-gray-700 dark:text-gray-300 text-base leading-relaxed">
-          Hi! I’m Muhammad Umar, the founder of this platform. I&aposm
+          Hi! I&apos;m Muhammad Umar, the founder of this platform. I&aposm
           passionate about building meaningful digital experiences and using
           technology to solve real-world problems. With a background in Computer
-          Science, I’ve always believed in the power of innovation, creativity,
-          and continuous learning. Whether it’s writing code, exploring new
-          ideas, or leading projects, I’m driven by a desire to create something
-          impactful.
+          Science, I&apos;ve always believed in the power of innovation,
+          creativity, and continuous learning. Whether it&apos;s writing code,
+          exploring new ideas, or leading projects, I&apos;m driven by a desire
+          to create something impactful.
           <br />
-          This space is where vision meets execution — and I’m excited to have
-          you here!
+          This space is where vision meets execution — and I&apos;m excited to
+          have you here!
         </p>
         <div className="flex flex-row items-center justify-center mt-6">
           <button className="mt-6 bg-white text-black px-6 py-2 rounded-xl hover:bg-gray-600 hover:text-white transition duration-200">

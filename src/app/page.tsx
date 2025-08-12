@@ -12,7 +12,7 @@ export default function Home() {
       {/* Placeholder for Famous Blogs */}
       <section
         id="famous-blogs"
-        className="h-screen flex items-center justify-center mt-150"
+        className="h-screen flex items-center justify-center mt-20"
       >
         <h2 className="text-4xl font-semibold">Famous Blogs Coming Soon...</h2>
       </section>

@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
           inputs: text,
           parameters: {
             max_length: 400,
-            min_length: 100,
+            min_length: 200,
             do_sample: false,
           },
         }),
